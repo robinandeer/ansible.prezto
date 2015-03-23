@@ -1,7 +1,9 @@
 ---
+dependencies: []
+
 galaxy_info:
-  author: "Robin Andeer <robin.andeer@gmail.com>"
-  description: Install Zsh and Prezto config
+  author: Robin Andeer
+  description: Install Zsh and Prezto dotfiles
   license: MIT
   min_ansible_version: 1.4
   platforms:
@@ -9,6 +11,7 @@ galaxy_info:
     versions:
       - wheezy
   - name: Ubuntu
+    versions:
+      - all
   categories:
     - system
-dependencies: []

@@ -1,24 +1,30 @@
 ---
+- name: install dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - zsh
+    - git
 
-- name: install zsh
-  apt: pkg=zsh state=present
-
-- name: install oh-my-zsh
-  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
+- name: install prezto
+  git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
   sudo: false
 
-- name: Backing up existing ~/.zshrc
-  command: if [ -f ~{{user}}/.zshrc ]; then mv ~{{user}}/.zshrc{,.orig}; fi
+- name: get rid of existing ~/.zshrc
+  file: path=~/.zshrc state=absent
   sudo: false
 
-- name: Creating new ~/.zshrc
-  command: cp ~{{user}}/.oh-my-zsh/templates/zshrc.zsh-template ~{{user}}/.zshrc
+- name: symlink new dotfiles
+  file: src=~/.zprezto/runcoms/{{ item }} dest=~/.{{ item }}
+        state=link
+  with_items:
+    - zlogin
+    - zlogout
+    - zpreztorc
+    - zprofile
+    - zshenv
+    - zshrc
   sudo: false
 
-- name: Add oh-my-solarized theme
-  copy: src=oh-my-zsh.theme dest=~{{user}}/.oh-my-zsh/themes/oh-my-zsh.theme
-  sudo: false
-
-- name: switch to ZSH
-  user: name={{user}} shell=/usr/bin/zsh
+- name: switch to Zsh
+  user: name={{ prezto_user }} shell=/usr/bin/zsh
   sudo: True
