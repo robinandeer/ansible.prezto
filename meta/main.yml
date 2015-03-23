@@ -1,15 +1,14 @@
 ---
 galaxy_info:
-  author: "Alex Lourie <djay.il@gmail.com>"
-  description: Install zsh and oh-my-zsh config
-  license: LGPL
+  author: "Robin Andeer <robin.andeer@gmail.com>"
+  description: Install Zsh and Prezto config
+  license: MIT
   min_ansible_version: 1.4
   platforms:
   - name: Debian
     versions:
       - wheezy
   - name: Ubuntu
-  - name: elementary os
   categories:
     - system
 dependencies: []

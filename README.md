@@ -1,35 +1,34 @@
-Bash
-========
+# Ansible role: Prezto
 
-Install zsh and oh-my-zsh
+Ansible role to install zsh and [prezto][prezto].
 
-Requirements
-------------
-
+## Requirements
 python-pycurl and python-software-properties installed.
 
-Example Playbook
--------------------------
+## Example Playbook
 
-    - hosts: servers
-      vars:
-         user: alex
-      roles:
-         - devbox.oh-my-zsh
+```yaml
+- hosts: servers
+  remote_user: vagrant
+  sudo: yes
 
-License
--------
+  roles:
+    - devbox.oh-my-zsh
 
-LGPL
+  vars:
+    user: vagrant
+```
 
-Author Information
-------------------
+## License
+MIT
 
-Alex Lourie, djay.il@gmail.com
+## Author Information
+* Robin Andeer ([robinandeer][robinandeer])
 
-Based on bash work by:
-------------------
+## Based on devbox.oh-my-zsh:
+* Alex Lourie ([alourie][alourie])
 
-Jasper N. Brouwer, jasper@nerdsweide.nl
 
-Ramon de la Fuente, ramon@delafuente.nl
+[alourie]: https://github.com/alourie
+[prezto]: https://github.com/sorin-ionescu/prezto
+[robinandeer]: https://github.com/robinandeer
